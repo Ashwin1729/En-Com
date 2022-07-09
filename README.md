@@ -13,4 +13,5 @@ Technologies used -
 Next.js, Application wide state management, Firebase Authentication Rest API (for login and signup), Firebase Realtime database(to store meals and orders data).
 
 Definately feel free to go and explore, any improvement would be definitely appreciated.
-Deployment Link = 
+
+Deployment Link = https://real-food-e-commerce-website.vercel.app/
