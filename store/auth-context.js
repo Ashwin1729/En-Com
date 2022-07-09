@@ -8,8 +8,11 @@ let logoutTimer;
 const AuthContext = React.createContext({
   token: "",
   isLoggedIn: false,
+  cartIsShown: false,
   login: (token) => {},
   logout: () => {},
+  showCart: () => {},
+  hideCart: () => {},
 });
 
 const remainingTime = (expirationTime) => {
@@ -47,6 +50,7 @@ export const AuthContextProvider = (props) => {
     initialToken = tokenData.token;
   }
   const [token, setToken] = useState(initialToken);
+  const [cartIsShown, setCartIsShown] = useState(false);
 
   const userIsLoggedIn = !!token;
 
@@ -74,6 +78,14 @@ export const AuthContextProvider = (props) => {
     logoutTimer = setTimeout(logoutHandler, remTime);
   };
 
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  };
+
   useEffect(() => {
     if (tokenData) {
       logoutTimer = setTimeout(logoutHandler, tokenData.duration);
@@ -83,8 +95,11 @@ export const AuthContextProvider = (props) => {
   const contextValue = {
     token: token,
     isLoggedIn: userIsLoggedIn,
+    cartIsShown: cartIsShown,
     login: loginHandler,
     logout: logoutHandler,
+    showCart: showCartHandler,
+    hideCart: hideCartHandler,
   };
 
   return (

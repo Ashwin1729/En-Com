@@ -2,10 +2,12 @@ import Link from "next/link";
 import { useContext } from "react";
 import AuthContext from "../../store/auth-context";
 import classes from "./MainNavigation.module.css";
+import HeaderCartButton from "../../componentsOnLogin/Layout/HeaderCartButton";
 
-const MainNavigation = () => {
+const MainNavigation = (props) => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
+  const showCart = authCtx.showCart;
 
   const logoutHandler = () => {
     authCtx.logout();
@@ -23,11 +25,7 @@ const MainNavigation = () => {
               <Link href="/auth">Login</Link>
             </li>
           )}
-          {isLoggedIn && (
-            <li>
-              <Link href="/profile">Profile</Link>
-            </li>
-          )}
+          {isLoggedIn && <HeaderCartButton onClick={() => showCart()} />}
           {isLoggedIn && (
             <li>
               <button onClick={logoutHandler}>Logout</button>
