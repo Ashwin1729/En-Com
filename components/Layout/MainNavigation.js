@@ -14,7 +14,7 @@ const MainNavigation = (props) => {
   };
 
   return (
-    <header className={classes.header}>
+    <header className={`${classes.header} ${isLoggedIn ? classes.dyn : ""}`}>
       <Link href="/">
         <div className={classes.logo}>Real Meal</div>
       </Link>
